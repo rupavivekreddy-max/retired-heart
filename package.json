@@ -1,0 +1,14 @@
+{
+  "name": "retired-heart",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db:local": "wrangler d1 execute retired-heart --local --file=schema.sql",
+    "db:remote": "wrangler d1 execute retired-heart --remote --file=schema.sql",
+    "dev": "wrangler pages dev public --d1 DB=retired-heart --port 8788",
+    "deploy": "wrangler pages deploy public --project-name retired-heart"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

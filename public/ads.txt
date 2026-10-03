@@ -1,0 +1,2 @@
+# Replace pub-0000000000000000 with your own AdSense publisher ID (Account > Settings), then remove this comment line.
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

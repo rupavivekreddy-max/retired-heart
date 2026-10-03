@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Retired Heart</title>
+<meta name="description" content="Share and read love and family stories that ended in pain. Break a heart for the stories that hurt most.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/intro.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body data-view="feed">
+
+<header class="bar">
+  <a class="brand" href="#/" aria-label="Retired Heart home">
+    <svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21 C4 15 1 11 1 7 C1 3.5 3.5 1 6.8 1 C9 1 11 2.2 12 4 L10 8 L14 11 L11 15 L13 18 Z M13.5 18 L15.5 14 L12.5 11 L15 7.5 L13 4 C14 2.2 16 1 17.2 1 C20.5 1 23 3.5 23 7 C23 11 20 15 13.5 21 Z" fill="#e5304f"/></svg>
+    <span>Retired Heart</span>
+  </a>
+  <nav class="bar-links" aria-label="Main">
+    <a href="#/">Stories</a>
+    <a href="#how" data-how>How it works</a>
+  </nav>
+  <div class="auth" id="auth"></div>
+</header>
+
+<div class="stage" id="stage">
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="tears" id="tears" aria-hidden="true"></div>
+  <div class="hero wrap">
+    <div class="morph">
+      <div class="heart-wrap" aria-hidden="true">
+        <svg viewBox="0 0 120 112">
+          <defs>
+            <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff5470"/>
+              <stop offset="1" stop-color="#a8183a"/>
+            </linearGradient>
+            <path id="hp" d="M60 104 C20 72 6 50 6 32 C6 16 18 6 32 6 C44 6 54 12 60 22 C66 12 76 6 88 6 C102 6 114 16 114 32 C114 50 100 72 60 104 Z"/>
+            <clipPath id="cl"><polygon points="-10,-10 60,-10 60,10 52,32 68,50 54,70 66,88 60,112 -10,112"/></clipPath>
+            <clipPath id="cr"><polygon points="130,-10 60,-10 60,10 52,32 68,50 54,70 66,88 60,112 130,112"/></clipPath>
+          </defs>
+          <g clip-path="url(#cl)"><use class="half-l" href="#hp" fill="url(#hg)"/></g>
+          <g clip-path="url(#cr)"><use class="half-r" href="#hp" fill="url(#hg)"/></g>
+          <polyline class="crack" points="60,10 52,32 68,50 54,70 66,88 60,112" fill="none" stroke="#0d1220" stroke-width="3" stroke-linejoin="round"/>
+          <path class="drop" d="M60 100 C54 108 54 114 60 116 C66 114 66 108 60 100 Z" fill="#7f9bd1"/>
+        </svg>
+      </div>
+      <h1 class="title" id="title" aria-label="Retired Heart"></h1>
+    </div>
+    <p class="tag">Stories of love and family that ended in pain. Read them. <b>Break a heart</b> for the ones that hurt most.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#how">How it works</a>
+      <button class="btn" id="replay" type="button">Replay intro</button>
+    </div>
+  </div>
+</div>
+
+
+
+<main class="wrap">
+
+  <section id="how">
+    <p class="eyebrow">How it works</p>
+    <h2>Share the story that broke you. Let others feel it.</h2>
+    <p class="lead">Retired Heart is a place for love and family stories that ended in pain. Anyone can read. Readers react with a broken heart, and the most heartbreaking stories rise to the top.</p>
+    <ol class="steps">
+      <li><h3>Sign in with Google</h3><p>Reading needs no account. To post, break a heart or reply, sign in with Google. One Google account gets exactly one username.</p></li>
+      <li><h3>Pick your username and age</h3><p>Choose a username once. It cannot be changed. Your age is shown next to your story and replies.</p></li>
+      <li><h3>Choose a language and write</h3><p>Pick the language of your story, then write in it. Text only. No pictures, GIFs or videos.</p></li>
+      <li><h3>Read other stories and break hearts</h3><p>Tap the broken heart on a story that hurt you. One broken heart per person on each story or reply. You cannot break a heart on your own post.</p></li>
+      <li><h3>Rise with the most broken hearts</h3><p>The story with the most broken hearts comes first. Replies work the same way, so the most heartbreaking reply is shown first.</p></li>
+    </ol>
+    <h3 class="sub">Posting more than once</h3>
+    <p>Everyone starts with one story. To post again, delete your earlier story, or earn it: your newest story needs more broken hearts than the number below.</p>
+    <div class="ladder">
+      <table>
+        <thead><tr><th>Your next story</th><th>Broken hearts needed</th></tr></thead>
+        <tbody>
+          <tr><td>2nd</td><td class="n">more than 100</td></tr>
+          <tr><td>3rd</td><td class="n">more than 1,000</td></tr>
+          <tr><td>4th</td><td class="n">more than 10,000</td></tr>
+          <tr><td>5th and after</td><td class="n">10 times the one before</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Replies follow the same ladder, counted separately on each story.</p>
+  </section>
+
+  <section id="feed" aria-live="polite">
+    <div class="feed-head">
+      <div>
+        <p class="eyebrow">Stories</p>
+        <h2 id="feed-title">Most heartbreaking</h2>
+      </div>
+      <button class="btn primary" id="btn-write" type="button">Share your story</button>
+    </div>
+    <div class="controls">
+      <div class="tabs" role="tablist" aria-label="Sort stories">
+        <button role="tab" class="tab" data-sort="top" aria-selected="true" type="button">Most broken</button>
+        <button role="tab" class="tab" data-sort="new" aria-selected="false" type="button">Newest</button>
+        <button role="tab" class="tab" data-sort="mine" aria-selected="false" type="button" id="tab-mine" hidden>My stories</button>
+      </div>
+      <label class="lang-filter">
+        <span>Language</span>
+        <select id="lang-filter"><option value="">All languages</option></select>
+      </label>
+    </div>
+    <div id="list" class="list"></div>
+    <p class="empty" id="empty" hidden>No stories here yet. Be the first to share one.</p>
+    <div class="more-row"><button class="btn" id="btn-more" type="button" hidden>Show more stories</button></div>
+  </section>
+
+  <section id="story-view" hidden>
+    <a class="back" href="#/">&larr; All stories</a>
+    <div id="story-card"></div>
+    <h3 class="sub" id="replies-title">Replies</h3>
+    <form id="reply-form" class="reply-form" autocomplete="off">
+      <label for="reply-text" class="sr">Write a reply</label>
+      <textarea id="reply-text" rows="3" maxlength="1500" placeholder="Write a reply. Text only."></textarea>
+      <div class="form-row">
+        <span class="count-note" id="reply-count">0 / 1500</span>
+        <button class="btn primary" type="submit">Reply</button>
+      </div>
+      <p class="form-msg" id="reply-msg" role="alert"></p>
+    </form>
+    <div id="replies" class="list"></div>
+    <p class="empty" id="no-replies" hidden>No replies yet.</p>
+  </section>
+
+  <footer>
+    <p class="final">Retired Heart is for everyone who has a heart.</p>
+    <p>If it has ever been broken, you belong here.</p>
+    <p class="foot-links"><a href="/privacy.html">Privacy, cookies and terms</a></p>
+  </footer>
+</main>
+
+<!-- Sign in -->
+<dialog id="dlg-signin">
+  <form method="dialog" class="dlg">
+    <h3>Sign in to continue</h3>
+    <p>Sign in with Google to share a story, reply or break a heart. Reading is open to everyone.</p>
+    <div id="signin-google" class="google-slot"></div>
+    <div id="dev-signin" hidden>
+      <p class="note">Local testing login</p>
+      <input id="dev-name" type="text" value="tester1" aria-label="Test user name">
+      <button class="btn" type="button" id="dev-go">Sign in as test user</button>
+    </div>
+    <p class="form-msg" id="signin-msg" role="alert"></p>
+    <div class="dlg-actions"><button class="btn" value="cancel">Close</button></div>
+  </form>
+</dialog>
+
+<!-- Profile (once) -->
+<dialog id="dlg-profile">
+  <form class="dlg" id="profile-form" autocomplete="off">
+    <h3>Choose your username</h3>
+    <p>This is permanent. Each Google account gets one username. Your age is shown publicly next to your posts.</p>
+    <label for="p-username">Username</label>
+    <input id="p-username" name="username" type="text" minlength="3" maxlength="20" required placeholder="3 to 20 letters, numbers or _">
+    <label for="p-age">Your age</label>
+    <input id="p-age" name="age" type="number" inputmode="numeric" min="5" max="120" required placeholder="Age">
+    <p class="form-msg" id="profile-msg" role="alert"></p>
+    <div class="dlg-actions">
+      <button class="btn" type="button" id="profile-cancel">Later</button>
+      <button class="btn primary" type="submit">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Compose story -->
+<dialog id="dlg-compose">
+  <form class="dlg" id="compose-form" autocomplete="off">
+    <h3>Share your story</h3>
+    <p id="rule-note" class="note"></p>
+    <label for="c-lang">Language of your story</label>
+    <select id="c-lang" required></select>
+    <label for="c-body">Your story</label>
+    <textarea id="c-body" rows="9" maxlength="5000" required placeholder="Write in your own language. Text only."></textarea>
+    <div class="form-row"><span class="count-note" id="c-count">0 / 5000</span></div>
+    <p class="form-msg" id="compose-msg" role="alert"></p>
+    <div class="dlg-actions">
+      <button class="btn" type="button" id="compose-cancel">Cancel</button>
+      <button class="btn primary" type="submit" id="compose-send">Post story</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="consent" id="consent" hidden role="region" aria-label="Cookie choice">
+  <p>We use Google AdSense to pay for hosting. Ads use cookies. You can say no and still read everything. <a href="/privacy.html">Details</a></p>
+  <div><button class="btn" id="consent-no" type="button">No ads</button> <button class="btn primary" id="consent-yes" type="button">Allow ads</button></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
