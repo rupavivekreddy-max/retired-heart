@@ -14,4 +14,4 @@ run_worker_first = ["/api/*"]
 binding = "DB"
 database_name = "retired-heart"
 # Paste your Database ID here (Cloudflare dashboard > D1 > retired-heart > Database ID).
-database_id = "REPLACE_WITH_YOUR_DATABASE_ID"
+database_id = "bc0c0433-3ef7-45a3-9daa-3b1befbfbc99"
