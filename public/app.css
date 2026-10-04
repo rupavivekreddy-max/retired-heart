@@ -109,3 +109,11 @@ footer .foot-links { margin-top: 14px; }
 .doc h2 { font-size: 22px; margin: 32px 0 8px; }
 .doc a { color: var(--rain); }
 .doc li { margin-bottom: 6px; }
+
+/* Avatars */
+.av { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; background: var(--line); flex: none; }
+.av.big { width: 64px; height: 64px; }
+.av-letter { display: inline-grid; place-items: center; font: 600 13px/1 var(--font-body); color: var(--ink-soft); background: var(--night); border: 1px solid var(--line); }
+.who-chip { display: inline-flex; align-items: center; gap: 8px; }
+.photo-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.photo-row input[type="file"] { width: auto; max-width: 100%; font-size: 14px; color: var(--ink-soft); }

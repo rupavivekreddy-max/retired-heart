@@ -23,5 +23,5 @@ export async function onRequestGet(ctx) {
     ).bind(user.id).first();
     post = postRule(row.n, row.latest || 0);
   }
-  return json({ config, user: { username: user.username, age: user.age }, post }, 200, { 'cache-control': 'no-store' });
+  return json({ config, user: { uid: user.id, username: user.username, age: user.age, has_avatar: !!user.has_avatar }, post }, 200, { 'cache-control': 'no-store' });
 }

@@ -6,7 +6,7 @@ export async function onRequestGet(ctx) {
   if (!Number.isInteger(id)) return fail('Not found.', 404);
   const viewer = await getUser(ctx);
   const { results } = await ctx.env.DB.prepare(
-    `SELECT r.id, r.body, r.breaks, r.created_at, u.username, u.age,
+    `SELECT r.id, r.body, r.breaks, r.created_at, u.username, u.age, u.id AS uid, (u.avatar IS NOT NULL) AS has_avatar,
             (SELECT 1 FROM reply_breaks b WHERE b.reply_id = r.id AND b.user_id = ?2) AS mine,
             (r.user_id = ?2) AS own
      FROM replies r JOIN users u ON u.id = r.user_id
@@ -14,7 +14,7 @@ export async function onRequestGet(ctx) {
      ORDER BY r.breaks DESC, r.id ASC
      LIMIT 100`
   ).bind(id, viewer ? viewer.id : 0).all();
-  const items = results.map((r) => ({ ...r, mine: !!r.mine, own: !!r.own }));
+  const items = results.map((r) => ({ ...r, mine: !!r.mine, own: !!r.own, has_avatar: !!r.has_avatar }));
   return json({ items }, 200, { 'cache-control': 'private, no-store' });
 }
 

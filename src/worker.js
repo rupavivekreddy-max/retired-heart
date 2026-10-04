@@ -4,6 +4,7 @@ import * as google from '../functions/api/auth/google.js';
 import * as logout from '../functions/api/auth/logout.js';
 import * as me from '../functions/api/me.js';
 import * as profile from '../functions/api/profile.js';
+import * as avatar from '../functions/api/avatar/[id].js';
 import * as report from '../functions/api/report.js';
 import * as stories from '../functions/api/stories/index.js';
 import * as story from '../functions/api/stories/[id]/index.js';
@@ -18,6 +19,7 @@ const routes = [
   [/^\/api\/auth\/logout$/, logout],
   [/^\/api\/me$/, me],
   [/^\/api\/profile$/, profile],
+  [/^\/api\/avatar\/(\d+)$/, avatar],
   [/^\/api\/report$/, report],
   [/^\/api\/stories$/, stories],
   [/^\/api\/stories\/(\d+)$/, story],

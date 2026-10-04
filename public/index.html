@@ -57,8 +57,6 @@
   </div>
 </div>
 
-
-
 <main class="wrap">
 
   <section id="how">
@@ -112,7 +110,7 @@
     <div class="more-row"><button class="btn" id="btn-more" type="button" hidden>Show more stories</button></div>
   </section>
 
-  <section id="story-view" hidden>
+  <section id="story-view">
     <a class="back" href="#/">&larr; All stories</a>
     <div id="story-card"></div>
     <h3 class="sub" id="replies-title">Replies</h3>
@@ -161,6 +159,12 @@
     <input id="p-username" name="username" type="text" minlength="3" maxlength="20" required placeholder="3 to 20 letters, numbers or _">
     <label for="p-age">Your age</label>
     <input id="p-age" name="age" type="number" inputmode="numeric" min="5" max="120" required placeholder="Age">
+    <label for="p-photo">Profile photo (optional)</label>
+    <div class="photo-row">
+      <img id="p-preview" class="av big" alt="Your photo preview" width="64" height="64" hidden>
+      <input id="p-photo" type="file" accept="image/*">
+    </div>
+    <p class="note">Your photo is shrunk to a tiny picture and shown publicly. Skip it if you prefer.</p>
     <p class="form-msg" id="profile-msg" role="alert"></p>
     <div class="dlg-actions">
       <button class="btn" type="button" id="profile-cancel">Later</button>

@@ -73,7 +73,7 @@ export async function getUser({ request, env }) {
   if (Number(exp) < Date.now() / 1000) return null;
   const good = await hmac(env.SESSION_SECRET, `${uid}.${exp}`);
   if (good !== sig) return null;
-  return env.DB.prepare('SELECT id, google_sub, username, age FROM users WHERE id = ?').bind(Number(uid)).first();
+  return env.DB.prepare('SELECT id, google_sub, username, age, (avatar IS NOT NULL) AS has_avatar FROM users WHERE id = ?').bind(Number(uid)).first();
 }
 
 // POST/DELETE must come from our own page (basic CSRF guard on top of SameSite=Lax).
@@ -149,3 +149,7 @@ export const intParam = (v, d, min, max) => {
   if (Number.isNaN(n)) return d;
   return Math.max(min, Math.min(max, n));
 };
+
+export function validAvatar(a) {
+  return typeof a === 'string' && a.length > 100 && a.length <= 14000 && a.startsWith('/9j/') && /^[A-Za-z0-9+/=]+$/.test(a);
+}

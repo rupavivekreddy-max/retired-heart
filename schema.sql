@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS users (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   google_sub  TEXT NOT NULL UNIQUE,
   username    TEXT UNIQUE COLLATE NOCASE,
-  age         INTEGER,
+    age         INTEGER,
+  avatar      TEXT,
   created_at  INTEGER NOT NULL
 );
 

@@ -168,7 +168,7 @@
     if (!state.me.username) {
       box.appendChild(h('button', { class: 'btn small primary', type: 'button', text: 'Finish setup', onclick: function () { $('#dlg-profile').showModal(); } }));
     } else {
-      box.appendChild(h('span', { class: 'who-chip' }, [state.me.username, h('small', { text: 'Age ' + state.me.age })]));
+      box.appendChild(h('span', { class: 'who-chip' }, [avatarEl(state.me), state.me.username, h('small', { text: 'Age ' + state.me.age })]));
     }
     box.appendChild(h('button', { class: 'btn small', type: 'button', text: 'Log out', onclick: logout }));
   }
@@ -204,11 +204,38 @@
   }
 
   /* ======================= profile ======================= */
+  function avatarEl(p, big) {
+    if (p.has_avatar) return h('img', { class: 'av' + (big ? ' big' : ''), src: '/api/avatar/' + p.uid, alt: '', width: '28', height: '28', loading: 'lazy' });
+    return h('span', { class: 'av av-letter', 'aria-hidden': 'true', text: String(p.username || '?').charAt(0).toUpperCase() });
+  }
+
+  var photoData = '';
+  // Shrink the chosen picture to a 64x64 square JPEG in the browser before sending.
+  $('#p-photo').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    photoData = ''; $('#p-preview').hidden = true;
+    if (!f) return;
+    var url = URL.createObjectURL(f), img = new Image();
+    img.onload = function () {
+      var c = document.createElement('canvas'); c.width = 64; c.height = 64;
+      var s = Math.min(img.width, img.height);
+      c.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 64, 64);
+      var d = c.toDataURL('image/jpeg', 0.7);
+      photoData = d.split(',')[1];
+      $('#p-preview').src = d; $('#p-preview').hidden = false;
+      URL.revokeObjectURL(url);
+    };
+    img.onerror = function () { $('#profile-msg').textContent = 'That file is not a picture.'; URL.revokeObjectURL(url); };
+    img.src = url;
+  });
+
   $('#profile-cancel').addEventListener('click', function () { $('#dlg-profile').close(); });
   $('#profile-form').addEventListener('submit', function (ev) {
     ev.preventDefault();
     var msg = $('#profile-msg'); msg.textContent = '';
-    api('/api/profile', { method: 'POST', body: { username: $('#p-username').value.trim(), age: Number($('#p-age').value) } }).then(function (r) {
+    var pbody = { username: $('#p-username').value.trim(), age: Number($('#p-age').value) };
+    if (photoData) pbody.avatar = photoData;
+    api('/api/profile', { method: 'POST', body: pbody }).then(function (r) {
       if (!r.ok) { msg.textContent = r.data.error || 'Could not save.'; return; }
       $('#dlg-profile').close();
       loadMe().then(function () { renderAuth(); toast('Welcome, ' + state.me.username); refreshView(); });
@@ -250,7 +277,7 @@
       $('#c-body').value = ''; $('#c-count').textContent = '0 / 5000';
       $('#dlg-compose').close();
       toast('Your story is live.');
-      loadMe().then(function () { setSort('new', true); location.hash = '#/'; document.getElementById('feed').scrollIntoView(); });
+      loadMe().then(function () { state.lang = ''; $('#lang-filter').value = ''; location.hash = '#/'; document.body.dataset.view = 'feed'; state.openStory = null; setSort('new'); document.getElementById('feed').scrollIntoView(); });
     });
   });
 
@@ -271,6 +298,7 @@
     opts = opts || {};
     var langs = state.config.langs || {};
     var meta = h('div', { class: 'meta' }, [
+      avatarEl(item),
       h('span', { class: 'who', text: item.username }),
       h('span', { class: 'pill', text: 'Age ' + item.age })
     ]);
